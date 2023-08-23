@@ -1,23 +1,66 @@
-import './App.css';
 import Cards from './components/Cards.jsx';
-import SearchBar from './components/SearchBar.jsx';
-import characters  from './data.js';
+import Nav from './components/Nav';
+import {useState} from 'react';
+import axios from "axios";
+
+import './App.css';
+
 
 function App() {
+   let [characters, setCharacters] = useState([]);
+
+
+   //Nueva API
+   //http://rym2-production.up.railway.app/api/character/${id}?key=henrym-usuariodegithub
+   
+   function onSearch(id) {
+      if(id > 0 && id<827){
+      axios(`http://rym2-production.up.railway.app/api/character/${id}?key=henrym-ddeltoro97`).then(({ data }) => {
+         const existingCharacter = characters.find((character) => character.id === data.id)
+         if (existingCharacter){
+            window.alert('¡Ya fué agregado!')
+            return;
+         }
+         if(!id) return;
+         if (data.name) {
+            setCharacters((oldChars) => [...oldChars, data]);
+         } else {
+            window.alert('¡No hay personajes con este ID!');
+         }
+      });
+   }
+   else{
+      window.alert('¡ID no es válido!');
+   }
+   }
+      
+   
+
+   function onClose (id){
+      let filteredCharacters = characters.filter(character =>character.id !== Number(id));
+      setCharacters(filteredCharacters);
+
+   }
+
+   function randomHandler(){
+      let randomId = (Math.random()*826).toFixed();
+      randomId= Number(randomId);
+      
+
+      const existingCharacter = characters.find((character) => character.id === randomId);
+      if (existingCharacter){
+         randomHandler();
+      }
+      else{
+         onSearch(randomId);
+      }
+      
+   }
+
    return (
       <div className='App'>
-         <SearchBar onSearch={(characterID) => window.alert(characterID)} />
-         <Cards characters={characters} />
-         {/* <Card
-            id={Rick.id}
-            name={Rick.name}
-            status={Rick.status}
-            species={Rick.species}
-            gender={Rick.gender}
-            origin={Rick.origin.name}
-            image={Rick.image}
-            onClose={() => window.alert('Emulamos que se cierra la card')}
-         /> */}
+         <Nav onSearch={onSearch} randomHandler={randomHandler}/>
+         <Cards characters={characters} onClose={onClose}/>
       </div>
    );
 }
