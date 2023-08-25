@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import {NavLink} from 'react-router-dom';
 
 export default function SearchBar({onSearch}) {
 
@@ -11,7 +12,7 @@ export default function SearchBar({onSearch}) {
    return (
       <div>
          <input type='search' onChange={onChange} value={id} placeholder="Character" />
-         <button onClick={() => {onSearch(id)}}>Agregar</button>
+         <button onClick={() => {onSearch(id)}}><NavLink to = '/home'>Agregar</NavLink></button>
       </div>
    );
 }

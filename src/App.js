@@ -2,6 +2,10 @@ import Cards from './components/Cards.jsx';
 import Nav from './components/Nav';
 import {useState} from 'react';
 import axios from "axios";
+import {Routes, Route} from 'react-router-dom';
+import About from './components/About.jsx';
+import Detail from './components/Detail.jsx';
+import NotFound from './components/NotFound.jsx';
 
 import './App.css';
 
@@ -21,7 +25,6 @@ function App() {
             window.alert('¡Ya fué agregado!')
             return;
          }
-         if(!id) return;
          if (data.name) {
             setCharacters((oldChars) => [...oldChars, data]);
          } else {
@@ -60,7 +63,12 @@ function App() {
    return (
       <div className='App'>
          <Nav onSearch={onSearch} randomHandler={randomHandler}/>
-         <Cards characters={characters} onClose={onClose}/>
+         <Routes>
+            <Route path = '/home' element = {<Cards characters={characters} onClose={onClose}/>}></Route>
+            <Route path = '/about' element = {<About/>}></Route>
+            <Route path = '/detail/:id' element = {<Detail/>}></Route>
+            <Route path = '*' element = {<NotFound/>}></Route>
+         </Routes>
       </div>
    );
 }
