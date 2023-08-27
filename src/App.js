@@ -1,18 +1,45 @@
 import Cards from './components/Cards.jsx';
 import Nav from './components/Nav';
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import axios from "axios";
-import {Routes, Route} from 'react-router-dom';
+import {Routes, Route, useLocation, useNavigate} from 'react-router-dom';
 import About from './components/About.jsx';
 import Detail from './components/Detail.jsx';
 import NotFound from './components/NotFound.jsx';
+import Form from './components/Form.jsx';
 
 import './App.css';
 
 
 function App() {
-   let [characters, setCharacters] = useState([]);
+   let email = 'hola@gmail.com';
+   let password = '123asd';
+   let [access, setAccess] = useState(false);
 
+   const navigate = useNavigate();
+
+   function login(userData){
+      if(userData.password === password && userData.email === email){
+         setAccess(true);
+         navigate('/home');
+      }
+      else{
+       window.alert('Invalid username on password');
+      }
+   }
+   function logout(){
+      setAccess(false);
+      navigate('/');
+   }
+
+   useEffect(() => {
+      !access && navigate('/');
+   }, [access]);
+
+   const location = useLocation()
+   
+
+   let [characters, setCharacters] = useState([]);
 
    //Nueva API
    //http://rym2-production.up.railway.app/api/character/${id}?key=henrym-usuariodegithub
@@ -22,18 +49,18 @@ function App() {
       axios(`http://rym2-production.up.railway.app/api/character/${id}?key=henrym-ddeltoro97`).then(({ data }) => {
          const existingCharacter = characters.find((character) => character.id === data.id)
          if (existingCharacter){
-            window.alert('¡Ya fué agregado!')
+            window.alert('This character has already been added!')
             return;
          }
          if (data.name) {
             setCharacters((oldChars) => [...oldChars, data]);
          } else {
-            window.alert('¡No hay personajes con este ID!');
+            window.alert('No character was found with this ID!');
          }
       });
    }
    else{
-      window.alert('¡ID no es válido!');
+      window.alert('Invalid ID!');
    }
    }
       
@@ -60,10 +87,13 @@ function App() {
       
    }
 
+
    return (
       <div className='App'>
-         <Nav onSearch={onSearch} randomHandler={randomHandler}/>
+         {location.pathname != '/' ? <Nav onSearch={onSearch} logout={logout} randomHandler={randomHandler}/>: ''}
+          {/* <Nav onSearch={onSearch} randomHandler={randomHandler}/> */}
          <Routes>
+            <Route path = '' element ={<Form login={login}/>}></Route>
             <Route path = '/home' element = {<Cards characters={characters} onClose={onClose}/>}></Route>
             <Route path = '/about' element = {<About/>}></Route>
             <Route path = '/detail/:id' element = {<Detail/>}></Route>
