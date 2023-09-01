@@ -25,6 +25,7 @@ export default function Nav({onSearch, randomHandler, logout}){
         <button><NavLink to = '/home'>Home</NavLink></button>
         <SearchBar onSearch={onSearch}/>
         <button onClick={randomHandler}><NavLink to = '/home'>Add Random</NavLink></button>
+        <button><NavLink to = '/favorites'>Favorites</NavLink></button>
         <button onClick={logout}>Log out</button>
         </div>
     )

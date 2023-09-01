@@ -7,6 +7,7 @@ import About from './components/About.jsx';
 import Detail from './components/Detail.jsx';
 import NotFound from './components/NotFound.jsx';
 import Form from './components/Form.jsx';
+import Favorites from './components/Favorites.jsx';
 
 import './App.css';
 
@@ -97,6 +98,7 @@ function App() {
             <Route path = '/home' element = {<Cards characters={characters} onClose={onClose}/>}></Route>
             <Route path = '/about' element = {<About/>}></Route>
             <Route path = '/detail/:id' element = {<Detail/>}></Route>
+            <Route path = '/favorites' element = {<Favorites/>}></Route>
             <Route path = '*' element = {<NotFound/>}></Route>
          </Routes>
       </div>

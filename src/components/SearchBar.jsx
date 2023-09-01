@@ -11,7 +11,7 @@ export default function SearchBar({onSearch}) {
 
    return (
       <div>
-         <input type='search' onChange={onChange} value={id} placeholder="Character" />
+         <input type='search' onChange={onChange} value={id} placeholder="Enter Character ID" />
          <button onClick={() => {onSearch(id)}}><NavLink to = '/home'>Agregar</NavLink></button>
       </div>
    );

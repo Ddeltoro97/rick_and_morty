@@ -45,10 +45,9 @@ export default function Form({login}){
             <hr></hr>
             <label htmlFor="Password">Password: </label>
             <input name = "password" type = "password" placeholder="Enter your password" value={userData.password} onChange={handleChange} ></input>
-            {errors.password ? <p>{errors.password}</p> : ''}
 
             <hr />
-            <button disabled={!userData.email ||  errors.email}
+            <button disabled={!userData.email ||  errors.email || !userData.password}
             >Submit</button>
         </form>
     )
