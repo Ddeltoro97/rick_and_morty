@@ -1,0 +1,86 @@
+@font-face{
+    font-family: myFont;
+    src: url(./get_schwifty.ttf);
+}
+
+.card{
+    margin: 20px;
+    margin-bottom: 150px;
+    background: linear-gradient(90deg, rgba(36,50,95,1) 29%, rgba(86,132,153,1) 67%, rgba(25,36,69,1) 86%);
+    padding-right: 0px;
+    padding-top: 15px;
+    width: 330px;
+    height: 470px;
+    border: 5px solid rgb(24,13,31);
+    font-family: myFont;
+    box-shadow: 20px 20px 25px #2B2B2B;
+}
+
+.card:hover{
+    filter:  opacity(70%);
+    
+}
+.header{
+    position: relative;
+    padding-bottom: 55px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.title{
+    color: #41b4c9;
+    -webkit-text-stroke: 0.01px #bfde42;
+    border: black;
+    font-size: 24px;
+    padding-bottom: -5px;
+    margin: 1;
+  position: absolute;
+  top: 0%;
+  transform: translateY(-30%);
+  text-align: center;
+}
+ 
+.info{
+    font-size: 12px;
+    background: linear-gradient(90deg, rgba(73,96,172,1) 29%, rgba(122,167,187,1) 68%, rgba(43,61,116,1) 89%);
+    margin-top: 5px;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    border: 2px solid rgb(24,13,31);
+    color: #41b4c9;
+    -webkit-text-stroke: 0.1px #bfde42;
+}
+
+.hola{
+    color: black;
+    text-decoration: none;
+}
+
+.id{
+    position: relative;
+    font-size: 9px;
+    right: -47%;
+    bottom: 1%;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: #bfde42;
+}
+
+.charpic{
+    width:  260px;
+    border: 2px solid rgb(24,13,31);
+    
+}
+
+.buttons{
+    background: transparent;
+    border: none;
+    font-size: 25px;
+}
+
+.buttons:hover{
+    cursor:pointer;
+}
