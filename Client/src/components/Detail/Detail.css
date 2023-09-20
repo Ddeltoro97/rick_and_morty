@@ -3,28 +3,46 @@
     src: url(./get_schwifty.ttf);
 }
 
-.char{
+.detail{
     display: flex;
-    padding: 15px;
-    margin: 0 auto;
+    justify-content: center;
+}
+
+.char{
+    margin: 20px;
     margin-bottom: 150px;
     background: linear-gradient(90deg, rgba(36,50,95,1) 29%, rgba(86,132,153,1) 67%, rgba(25,36,69,1) 86%);
     padding-right: 0px;
     padding-top: 15px;
-    width: 600px;
-    height: 580px;
+    width: 330px;
+    height: 572px;
     border: 5px solid rgb(24,13,31);
     font-family: myFont;
     box-shadow: 20px 20px 25px #2B2B2B;
 }
 
+.header{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
 .name{
-    font-size: 26px;
+    font-size: 24px;
+    padding-bottom: -5px;
     color: #41b4c9;
     -webkit-text-stroke: 0.01px #bfde42;
+    margin: 1;
+    position: absolute;
+    top: 10%;
+    transform: translateY(-30%);
+    text-align: center;
 }
 
 .items{
+    height: 200px;
     font-size: 12px;
     background: linear-gradient(90deg, rgba(73,96,172,1) 29%, rgba(122,167,187,1) 68%, rgba(43,61,116,1) 89%);
     margin-top: 5px;
@@ -32,24 +50,25 @@
     margin-right: 10px;
     padding-top: 1px;
     padding-bottom: 1px;
+    padding-left: 5px;
+    padding-right: 5px;
     border: 2px solid rgb(24,13,31);
     color: #41b4c9;
     -webkit-text-stroke: 0.1px #bfde42;
-    height: 300px;
-    width: 400px;
 }
 
 
 .charpicdetail{
-    width:  340px;
+    width:  260px;
     border: 2px solid rgb(24,13,31);
 }
 
 .id{
+    position: relative;
     font-size: 9px;
     float: right;
     margin-right: 3px;
-    bottom: 0%;
+    bottom: 1%;
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     color: #bfde42;
 }

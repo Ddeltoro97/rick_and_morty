@@ -18,6 +18,7 @@ function Card(props) {
     myFavorites,
   } = props;
 
+
   let [isFav, setIsFav] = useState(false);
 
   const handleFavorite = () => {
@@ -28,17 +29,19 @@ function Card(props) {
       setIsFav(true);
       addFav({ key, id, name, species, gender, image, onClose });
     }
+    // console.log(isFav);
   };
 
   useEffect(() => {
     myFavorites.forEach((fav) => {
-      if (fav.id === id) {
+      if (fav.id == id) {
         setIsFav(true);
       }
     });
   }, [myFavorites]);
 
   let location = useLocation();
+
 
   return (
    

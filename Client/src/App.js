@@ -17,17 +17,26 @@ function App() {
 
   const navigate = useNavigate();
 
-     function login(userData) {
-      const { email, password } = userData;
-      const URL = 'http://localhost:3001/rickandmorty/login/';
-      axios(URL + `?email=${email}&password=${password}`).then(({ data }) => {
-         const { access } = data;
-         setAccess(data);
-         access && navigate('/home');
-         if (!access) window.alert("Invalid username or password")
-      })
+     async function login(userData) {
+      // const { email, password } = userData;
+      // const URL = 'http://localhost:3001/rickandmorty/login/';
+      // axios(URL + `?email=${email}&password=${password}`)
+      // .then(({ data }) => {
+      //    const { access } = data;
+      //    setAccess(data);
+      //    access && navigate('/home');
+      //    if (!access) window.alert("Invalid username or password")
+         
+      // })
+      const {email, password} = userData;
+      const {data} = await axios (`http://localhost:3001/rickandmorty/login/?email=${email}&password=${password}`);
 
+      const access = data.access;
+      setAccess(access);
+      access && navigate('/home');
+      if (!access) window.alert('Invalid username or password')
    }
+
   function logout() {
     setAccess(false);
     navigate("/");
@@ -44,26 +53,24 @@ function App() {
   //Nueva API
   //http://rym2-production.up.railway.app/api/character/${id}?key=henrym-usuariodegithub
 
-  function onSearch(id) {
-    if (id > 0 && id < 827) {
-      axios(
-        `http://localhost:3001/rickandmorty/character/${id}`
-      ).then(({ data }) => {
-        const existingCharacter = characters.find(
-          (character) => character.id === data.id
-        );
-        if (existingCharacter) {
-          window.alert("This character has already been added!");
-          return;
-        }
-        if (data.name) {
-          setCharacters((oldChars) => [...oldChars, data]);
-        } else {
-          window.alert("No character was found with this ID!");
-        }
-      });
-    } else {
-      window.alert("Invalid ID!");
+  async function onSearch(id) {
+    try {
+      const { data } = await axios(`http://localhost:3001/rickandmorty/character/${id}`);
+      const existingChar = characters.find((character) => character.id == data.id);
+  
+      if (existingChar) {
+        window.alert("This character has already been added!");
+      } else if (data.name) {
+        setCharacters((oldChars) => [...oldChars, data]);
+      } else {
+        window.alert("No character was found with this ID!");
+      }
+    } catch (error) {
+      if (!isNaN(id)) {
+        window.alert("No character was found with this ID!");
+      } else {
+        window.alert("This is not a valid ID!");
+      }
     }
   }
 
@@ -79,7 +86,7 @@ function App() {
     randomId = Number(randomId);
 
     const existingCharacter = characters.find(
-      (character) => character.id === randomId
+      (character) => character.id == randomId
     );
     if (existingCharacter) {
       randomHandler();

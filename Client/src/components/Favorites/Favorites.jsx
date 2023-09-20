@@ -24,13 +24,18 @@ function Favorites({ myFavorites }) {
     dispatch(filterCards(event.target.value));
   };
 
+  const handleBackColor = (hover) =>{
+    if (hover) return "white";
+    if (!hover) return "black"
+  }
+
   return (
     <div>
-      <select onChange={handleOrder}>
+      <select onChange={handleOrder} style={{width: 200, height: 40, color: "#0E0E0E", backgroundColor: "rgb(164, 162, 162)", borderRadius: 5, fontFamily: "myFont", fontSize: 20, margin: 10}}>
         <option value="A">Ascending</option>
         <option value="D">Descending</option>
       </select>
-      <select  onChange={handleFilter}>
+      <select  onChange={handleFilter} style={{width: 200, height: 40, color: "#0E0E0E", backgroundColor: "rgb(164, 162, 162)", borderRadius: 5, fontFamily: "myFont", fontSize: 20, margin: 10,}}>
         <option value="All">Show all</option>
         <option value="Male">Male</option>
         <option value="Female">Female</option>

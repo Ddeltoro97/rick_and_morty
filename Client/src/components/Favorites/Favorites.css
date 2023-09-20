@@ -1,13 +1,11 @@
+@font-face{
+    font-family: myFont;
+    src: url(./get_schwifty.ttf);
+}
+
 .container{
     margin: 0 auto;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    margin: 15px
-}
-
-.scroll{
-    background-color: gray;
-    color: gray;
-    margin: 10px;
 }

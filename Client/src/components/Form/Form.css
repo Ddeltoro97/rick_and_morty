@@ -1,9 +1,4 @@
-.login{
-background-color: black;
+@font-face{
+    font-family: myFont;
+    src: url(./get_schwifty.ttf);
 }
-
-.error{
-    color: red;
-    font-size: x-large;
-}
-

@@ -1,15 +1,31 @@
 let myFavorites = [];
 
-const postFav = (req, res) =>{
-    const character = req.body;
-    myFavorites.push(character);
-    return res.json(myFavorites);
-}
+function postFav(req, res) {
+    try {
+      const character = req.body;
+  
+      if (!character.name || !character.gender) throw new Error ( "Missing info")
+      myFavorites.push(character);
+    res.status(200).json(myFavorites);
+    }catch (error) {
+      res.status(400).json({error:error})
+    }
+  }
 
 const deleteFav = (req, res) =>{
-    const {id} = req.params;
-    myFavorites = myFavorites.filter((favorite) => favorite.id !== id);
-    return res.json(myFavorites);
+    try{
+        const {id} = req.params;
+        myFavorites = myFavorites.filter((character) => character.id != id);
+
+        if(myFavorites.length === 0){
+            res.status(200).json([]);
+        } else{
+            res.status(200).json(myFavorites);
+        }
+    }
+    catch(error){
+        res.status(400).json({error: error.message});
+    }
 }
 
 module.exports={postFav, deleteFav};

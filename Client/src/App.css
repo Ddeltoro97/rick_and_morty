@@ -1,3 +1,7 @@
 .App {
    text-align: center;
+   background-image: url("https://wallpaperboat.com/wp-content/uploads/2019/04/rick-and-morty-wallpaper-portal-wallpaper-001.jpg");
+   background-attachment: fixed;
+   background-position: center;
 }
+

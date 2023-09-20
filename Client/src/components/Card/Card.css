@@ -14,10 +14,13 @@
     border: 5px solid rgb(24,13,31);
     font-family: myFont;
     box-shadow: 20px 20px 25px #2B2B2B;
+    transition: transform 600ms;
 }
 
-.card:hover{
-    filter:brightness(170%)
+.card:hover,
+.card:focus-visible{
+    filter:brightness(170%);
+    transform: translateY(-0.95rem);
     
 }
 .header{
